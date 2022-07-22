@@ -96,6 +96,19 @@ function AppTest() {
     }
 
 
+    // Limit
+
+    const [formLimit, setFormLimit] = useState([
+        { name: '' }
+    ])
+
+    const handleFormChange5 = (event, index) => {
+        let data = [...formLimit];
+        data[index][event.target.name] = event.target.value;
+        setFormLimit(data);
+    }
+
+
 
     // Submitting
 
@@ -103,16 +116,18 @@ function AppTest() {
     let formField6 = formShould.map(a => a.name);
     let formField7 = formNot.map(a => a.name);
     let formField8 = { ...formLte };
+    let formField9 = formLimit.map(a => a.name);
 
+    console.log(formLimit.map(a => a.name));
 
-    const formField4 = { must: formField3, should: formField6, not: formField7, filter: formField8 };
+    const formField4 = { must: formField3, should: formField6, offset: formField9[0], not: formField7, filter: formField8 };
 
 
     const getNotes = async () => {
         //API Call
         const url = `https://test-6ed27-default-rtdb.firebaseio.com/`
         const response = await fetch(url, {
-            method: 'GET',
+            method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
                 // formField4
@@ -200,17 +215,36 @@ function AppTest() {
 
                 <br />
 
+                {formLimit.map((form, index) => {
+                    return (
+                        <div key={index}>
+                            <input
+                                name='name'
+                                type='number'
+                                placeholder='No. of logs (Enter number)'
+                                onChange={event => handleFormChange5(event, index)}
+                                value={form.name}
+                            />
+
+                        </div>
+                    )
+                })}
+
+                <br />
+
                 {formLte.map((form, index) => {
                     return (
                         <div key={index}>
                             <input
                                 name='lte'
+                                type='number'
                                 placeholder='lte'
                                 onChange={event => handleFormChange4(event, index)}
                                 value={form.lte}
                             />
                             <input
                                 name='gte'
+                                type='number'
                                 placeholder='gte'
                                 onChange={event => handleFormChange4(event, index)}
                                 value={form.gte}

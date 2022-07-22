@@ -1,15 +1,9 @@
-const [formLte, setFormLte] = useState([
-    { lte: '', gte: '' }
+const [formLimit, setFormLimit] = useState([
+    { limit: '' }
 ])
 
-const handleFormChange4 = (event, index) => {
-    let data = [...formLte];
+const handleFormChange5 = (event, index) => {
+    let data = [...formLimit];
     data[index][event.target.name] = event.target.value;
-    setFormLte(data);
-}
-
-const removeFields3 = (index) => {
-    let data = [...formLte];
-    data.splice(index, 1)
-    setFormLte(data)
+    setFormLimit(data);
 }
