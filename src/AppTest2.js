@@ -110,7 +110,7 @@ function AppTest() {
 
     const getNotes = async () => {
         //API Call
-        const url = `${host}/api/notes/fetchallnotes`
+        const url = `https://test-6ed27-default-rtdb.firebaseio.com/`
         const response = await fetch(url, {
             method: 'GET',
             headers: {
