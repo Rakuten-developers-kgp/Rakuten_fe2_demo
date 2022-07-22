@@ -115,8 +115,11 @@ function AppTest() {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
+                // formField4
+            },
+            body: JSON.stringify({
                 formField4
-            }
+            }),
         });
         const json = await response.json();
         console.log(json);
